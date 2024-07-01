@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: 'https://github.com/hilma-tech/argo'
-    path: root-app
+    path: apps
     targetRevision: HEAD
   project: default
   syncPolicy:
