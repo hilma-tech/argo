@@ -9,10 +9,10 @@ spec:
       repoURL: 'https://github.com/hilma-tech/argo.git'
       revision: main
       files:
-        - path: 'apps/heroes-live-on/values-*.yaml'
+        - path: 'apps/heroes-live-on/**/values.yaml'
   template:
     metadata:
-      name: '{{path}}'
+      name: heroes-live-on-'{{path.basename}}'
     spec:
       project: default
       source:
@@ -21,10 +21,10 @@ spec:
         chart: generic-app
         helm:
           valueFiles:
-            - '{{path}}' 
+            - '{{path}}/values.yaml' 
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{path.basename}}'
+        namespace: heroes-live-on-'{{path.basename}}'
       syncPolicy:
         automated:
           prune: true
