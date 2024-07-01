@@ -10,7 +10,6 @@ spec:
       revision: main
       files:
         - path: 'apps/heroes-live-on/values-*.yaml'
-          fullPath: true
   template:
     metadata:
       name: '{{path.basename}}'
