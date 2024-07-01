@@ -24,7 +24,7 @@ spec:
             - '{{path}}/values.yaml' 
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: heroes-live-on-'{{path.basename}}'
+        namespace: heroes-live-on-{{path.basename}}'
       syncPolicy:
         automated:
           prune: true
