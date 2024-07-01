@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: heroes-live-on
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: 'https://github.com/hilma-tech/argo.git'
+      revision: main
+      files:
+        - path: 'apps/heroes-live-on/values-*.yaml'
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/hilma-tech/helm-charts.git'
+        targetRevision: main 
+        chart: generic-app
+        helm:
+          valueFiles:
+            - '{{path}}' 
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
