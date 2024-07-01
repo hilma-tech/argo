@@ -21,7 +21,7 @@ spec:
         chart: generic-app
         helm:
           valueFiles:
-            - '{{path}}/values.yaml' 
+            - '{{path}}' 
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'heroes-live-on-{{path.basename}}'
