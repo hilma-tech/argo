@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/hilma-tech/helm-charts.git'
+        repoURL: 'https://hilma-tech.github.io/helm-charts/'
         targetRevision: 1.16.0
         chart: generic-app
         helm:
