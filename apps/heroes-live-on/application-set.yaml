@@ -17,7 +17,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/hilma-tech/helm-charts.git'
-        targetRevision: HEAD
+        targetRevision: 1.16.0
         chart: generic-app
         helm:
           valueFiles:
