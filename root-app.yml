@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: openshift-gitops
+spec:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: 'https://github.com/hilma-tech/argo'
+    path: root-app
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
