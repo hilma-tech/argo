@@ -15,13 +15,17 @@ spec:
       name: '{{path.basename}}'
     spec:
       project: default
-      source:
-        repoURL: 'https://hilma-tech.github.io/helm-charts/'
-        targetRevision: 0.1.0
-        chart: generic-app
-        helm:
-          valueFiles:
-            - '{{path}}' 
+      sources:
+        - repoURL: 'https://hilma-tech.github.io/helm-charts/'
+          targetRevision: 0.1.0
+          chart: generic-app
+          helm:
+            valueFiles:
+              - '$values/{{path}}/values.yaml' 
+        - repoURL: 'https://github.com/hilma-tech/argo.git'
+          targetRevision: main
+          ref: values
+          
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'heroes-live-on-{{path.basename}}'
