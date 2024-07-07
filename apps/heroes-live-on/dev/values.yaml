@@ -26,7 +26,7 @@ applications:
         path: heroes-live-on/config
       - name: rds-config 
         path: heroes-live-on/config-rds
-  - name: main-client
+  - name: mc
     type: client
     route: 
       enabled: true
