@@ -33,6 +33,6 @@ applications:
       host: client.testserver.apps.cluster.carmel6000.org
       path: /
     image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-main-client
-    imageTag: v3
+    imageTag: v4
     replicas: 1
     containerPort: 3000
