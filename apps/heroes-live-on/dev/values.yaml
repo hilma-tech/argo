@@ -38,7 +38,7 @@ applications:
     type: client
     route: 
       enabled: true
-      host: heroes-admin.staging.apps.cluster.carmel6000.org
+      host: admin-staging.heroes-live-on.com
       path: /
     image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-admin
     imageTag: v1
