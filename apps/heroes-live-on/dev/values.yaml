@@ -15,7 +15,7 @@ applications:
     containerPort: 8080
     configs: 
        PORT: "8080"
-       CONFIG_ENV: staging
+       CONFIG_ENV: production
        NODE_ENV: production
     secrets: 
       - name:  global-config
@@ -41,7 +41,7 @@ applications:
     type: client
     route: 
       enabled: true
-      host: staging.heroes-live-on.com
+      host: heroes-live-on.com
       certificate:
         enabled: true
         secretName: heroes-tls
@@ -54,7 +54,7 @@ applications:
     type: client
     route: 
       enabled: true
-      host: admin-staging.heroes-live-on.com
+      host: admin.heroes-live-on.com
       path: /
       certificate:
         enabled: true
