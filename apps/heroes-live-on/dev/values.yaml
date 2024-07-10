@@ -40,6 +40,9 @@ applications:
       enabled: true
       host: admin-staging.heroes-live-on.com
       path: /
+      certificate:
+        enabled: true
+        secretName: heroes-tls
     image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-admin
     imageTag: v1
     replicas: 1
