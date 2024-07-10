@@ -1,0 +1,65 @@
+projectName: heroes-live-on
+environment: staging
+
+awsRegion: us-east-1
+
+applications:
+  - name: main
+    type: server
+    serviceType: NodePort
+    route: 
+      enabled: false
+    image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/heroes-live-on
+    imageTag: 8ae38ed9743003d909bdd9b8a5d84fe140daee67
+    replicas: 2
+    containerPort: 8080
+    configs: 
+       PORT: "8080"
+       CONFIG_ENV: staging
+       NODE_ENV: production
+    secrets: 
+      - name:  global-config
+        path: heroes-live-on/config-global
+      - name:  env-config
+        path: heroes-live-on/config
+      - name: rds-config 
+        path: heroes-live-on/config-rds
+  - name: superadmin
+    type: client
+    route: 
+      enabled: true
+      certificate:
+        enabled: true
+        secretName: heroes-tls
+      host: super-staging.heroes-live-on.com
+      path: /
+    image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-super-admin
+    imageTag: v12
+    replicas: 1
+    containerPort: 80
+  - name: main
+    type: client
+    route: 
+      enabled: true
+      host: staging.heroes-live-on.com
+      certificate:
+        enabled: true
+        secretName: heroes-tls
+      path: /
+    image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-main-client
+    imageTag: v12
+    replicas: 1
+    containerPort: 80
+  - name: admin 
+    type: client
+    route: 
+      enabled: true
+      host: admin-staging.heroes-live-on.com
+      path: /
+      certificate:
+        enabled: true
+        secretName: heroes-tls
+    image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-admin
+    imageTag: v12
+    replicas: 1
+    containerPort: 80
