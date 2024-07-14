@@ -12,7 +12,7 @@ spec:
         - path: 'apps/heroes-live-on/**/values.yaml'
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: heroes-live-on-'{{path.basename}}'
     spec:
       project: default
       sources:
