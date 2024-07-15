@@ -12,7 +12,7 @@ applications:
       enabled: true
       host: after-me-server.staging.apps.cluster.carmel6000.org
     image: 160569206162.dkr.ecr.eu-central-1.amazonaws.com/after-me-server
-    imageTag: v1
+    imageTag: v2
     replicas: 1
     containerPort: 8080
     configs: 
