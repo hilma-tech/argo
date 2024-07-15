@@ -1,5 +1,5 @@
 projectName: heroes-live-on
-environment: staging
+environment: production
 
 awsRegion: us-east-1
 
@@ -31,7 +31,7 @@ applications:
       certificate:
         enabled: true
         secretName: heroes-tls
-      host: super-staging.heroes-live-on.com
+      host: super-admin.heroes-live-on.com
       path: /
     image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/helo-super-admin
     imageTag: v12
