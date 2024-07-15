@@ -7,6 +7,7 @@ applications:
   - name: main
     type: server
     serviceType: NodePort
+    runAsRoot: true
     route: 
       enabled: true
       host: after-me-server.staging.apps.cluster.carmel6000.org
