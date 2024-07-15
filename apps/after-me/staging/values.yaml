@@ -1,0 +1,33 @@
+projectName: after-me
+environment: staging
+
+awsRegion: us-central-1
+
+applications:
+  - name: main
+    type: server
+    serviceType: NodePort
+    route: 
+      enabled: true
+      host: after-me-server.staging.apps.cluster.carmel6000.org
+    image: 160569206162.dkr.ecr.eu-central-1.amazonaws.com/after-me-server
+    imageTag: v1
+    replicas: 1
+    containerPort: 8080
+    configs: 
+      -
+    secrets: 
+      - name:  staging
+        path: after-me/staging
+  - name: superadmin
+    type: client
+    route: 
+      enabled: true
+      certificate:
+        enabled: false
+      host: after-me-super.staging.apps.cluster.carmel6000.org
+      path: /
+    image: 160569206162.dkr.ecr.eu-central-1.amazonaws.com/after-me-super-admin
+    imageTag: v1
+    replicas: 1
+    containerPort: 80

@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: after-me
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: 'https://github.com/hilma-tech/argo.git'
+      revision: main
+      files:
+        - path: 'apps/after-me/**/values.yaml'
+  template:
+    metadata:
+      name: after-me-{{path.basename}}
+    spec:
+      project: default
+      sources:
+        - repoURL: 'https://hilma-tech.github.io/helm-charts/'
+          targetRevision: 0.1.10
+          chart: generic-app
+          helm:
+            valueFiles:
+              - '$values/{{path}}/values.yaml' 
+        - repoURL: 'https://github.com/hilma-tech/argo.git'
+          targetRevision: main
+          ref: values
+          
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'after-me-{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
