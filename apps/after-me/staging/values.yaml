@@ -16,7 +16,7 @@ applications:
     replicas: 1
     containerPort: 8080
     configs: 
-      -
+      NODE_ENV: staging 
     secrets: 
       - name:  staging
         path: after-me/staging
