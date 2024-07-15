@@ -1,7 +1,7 @@
 projectName: after-me
 environment: staging
 
-awsRegion: us-central-1
+awsRegion: eu-central-1
 
 applications:
   - name: main
