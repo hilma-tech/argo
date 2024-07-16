@@ -20,6 +20,8 @@ applications:
     secrets: 
       - name:  staging
         path: after-me/staging
+      - name:  global-misc
+        path: after-me/global-misc
   - name: superadmin
     type: client
     route: 
