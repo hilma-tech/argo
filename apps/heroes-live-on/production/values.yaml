@@ -10,7 +10,7 @@ applications:
     route: 
       enabled: false
     image: 160569206162.dkr.ecr.us-east-1.amazonaws.com/heroes-live-on
-    imageTag: 8ae38ed9743003d909bdd9b8a5d84fe140daee67
+    imageTag: v4
     replicas: 2
     containerPort: 8080
     configs: 
