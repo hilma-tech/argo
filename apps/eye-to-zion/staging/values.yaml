@@ -31,6 +31,6 @@ applications:
       host: eye-to-zion-super.staging.apps.cluster.carmel6000.org
       path: /
     image: 160569206162.dkr.ecr.eu-west-2.amazonaws.com/eye-to-zion-super-admin
-    imageTag: v1
+    imageTag: v2
     replicas: 1
     containerPort: 80
