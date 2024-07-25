@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: eye-to-zion
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: 'https://github.com/hilma-tech/argo.git'
+      revision: main
+      files:
+        - path: 'apps/eye-to-zion/**/values.yaml'
+  template:
+    metadata:
+      name: eye-to-zion-{{path.basename}}
+    spec:
+      project: default
+      sources:
+        - repoURL: 'https://hilma-tech.github.io/helm-charts/'
+          targetRevision: 0.1.14
+          chart: generic-app
+          helm:
+            valueFiles:
+              - '$values/{{path}}/values.yaml' 
+        - repoURL: 'https://github.com/hilma-tech/argo.git'
+          targetRevision: main
+          ref: values
+          
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'eye-to-zion-{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
