@@ -21,7 +21,7 @@ applications:
       - name:  staging
         path: after-me/staging
       - name:  global-misc
-        path: after-me/global-misc
+        path: after-me/misc
   - name: superadmin
     type: client
     route: 
