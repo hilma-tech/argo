@@ -1,0 +1,33 @@
+projectName: tokens
+environment: staging
+
+awsRegion: eu-central-1
+
+applications:
+  - name: main
+    type: server
+    serviceType: NodePort
+    runAsRoot: true
+    route: 
+      enabled: false
+    image: 160569206162.dkr.ecr.eu-central-1.amazonaws.com/tokens-main-server
+    imageTag: v1
+    replicas: 1
+    containerPort: 8080
+    configs: 
+      NODE_ENV: staging 
+    secrets: 
+      - name:  staging
+        path: tokens/staging
+  - name: main
+    type: client
+    route: 
+      enabled: true
+      certificate:
+        enabled: false
+      host: tokens.staging.apps.cluster.carmel6000.org
+      path: /
+    image: 160569206162.dkr.ecr.eu-central-1.amazonaws.com/tokens-main-client
+    imageTag: v1
+    replicas: 1
+    containerPort: 80
