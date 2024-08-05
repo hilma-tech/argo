@@ -12,14 +12,14 @@ applications:
       enabled: true
       host: emotion-server.staging.apps.cluster.carmel6000.org
     image: 160569206162.dkr.ecr.eu-central-1.amazonaws.com/emotion-server
-    imageTag: v1
+    imageTag: v2
     replicas: 1
     containerPort: 8080
     configs: 
       NODE_ENV: staging 
     secrets: 
       - name:  staging
-        path: after-me/staging
+        path: emotion/staging
   - name: admin
     type: client
     route: 
